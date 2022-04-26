@@ -1,0 +1,37 @@
+---
+title: "SQL"
+author: "Nima Rafati"
+date: "4/26/2022"
+output: html_document
+---
+# What is SQL
+Structured Query Language.  
+```{r}
+library(DBI)
+db = dbConnect(RSQLite::SQLite(), dbname = "sql.sqlite")
+```
+
+# Creating Table
+
+```{sql connection=db}
+CREATE TABLE shoes
+(Id char(10) PRIMARY KEY,
+Brand char(10) NOT NULL);
+SELECT * FROM shoes
+```
+
+
+# Creat Temporary Tables
+```{sql connectino=db}
+CREATE TEMPORARY TABLE Sandals as 
+(
+SELECT * 
+FROM shoes
+WHERE shoe_type = 'sandals'
+)
+```
+# Commenting
+- Mute few lines by `/* ....*/`.  
+- Single line by `--`.  
+
+
